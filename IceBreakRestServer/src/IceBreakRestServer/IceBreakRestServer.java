@@ -1,7 +1,22 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+/* ---------------------------------------------------------------------------------------- */
+/*                                                                                          */
+/*    Copyright [2010] [System & Method A/S]                                                */
+/*                                                                                          */
+/*    Licensed under the Apache License, Version 2.0 (the "License");                       */
+/*    you may not use this file except in compliance with the License.                      */
+/*    You may obtain a copy of the License at                                               */
+/*                                                                                          */
+/*        http://www.apache.org/licenses/LICENSE-2.0                                        */
+/*                                                                                          */
+/*    Unless required by applicable law or agreed to in writing, software                   */
+/*    distributed under the License is distributed on an "AS IS" BASIS,                     */
+/*    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.              */
+/*    See the License for the specific language governing permissions and                   */
+/*    limitations under the License.                                                        */
+/*                                                                                          */
+/*    Design - Niels Liisberg                                                                                          */
+/*                                                                                          */
+/* ---------------------------------------------------------------------------------------- */
 package IceBreakRestServer;
 
 import java.io.*;
@@ -13,14 +28,8 @@ import java.io.IOException;
 import java.util.Properties;
 import java.net.URL.*;
 import java.net.URLDecoder;
-import java.net.MalformedURLException;
 
 
-
-/**
- *
- * @author nli
- */
 public class IceBreakRestServer {
 
   private ServerSocket providerSocket = null;
@@ -108,7 +117,8 @@ public class IceBreakRestServer {
      }  
      return map;  
  }
- // This handles bothe windows <CR><LF> and mac/aix/linux <CR>
+
+ // This handles both windows <CR><LF> and mac/aix/linux <CR>
  // and returns both end of header and end of line sequence
  private int isEol(byte [] buf , int i) {
    if (buf[i] == 0x0d &&buf[i+1] == 0x0a) {
@@ -159,6 +169,7 @@ public class IceBreakRestServer {
             } else {
               resource = queryStr;
             }
+         // Following lines are the header - put them into a map
          } else {
             String param  =  new String(buf, pos  , len);
             int p = param.indexOf(':');
@@ -176,7 +187,8 @@ public class IceBreakRestServer {
          len ++;
        }
     }
-    
+
+    // this is only for debugging
     System.out.println("resource: " + request);
     System.out.println("method: " + method);
     System.out.println("resource: " + resource);
@@ -184,18 +196,6 @@ public class IceBreakRestServer {
     System.out.println("httpVer: " + httpVer);
     System.out.println("header  : " + header   );
     System.out.println("parms : " + parms  );
-
-    /*
-    // String query = url.getQuery();
-    Map<String, String> map = getQueryMap(query);
-    Set<String> keys = map.keySet();
-    for (String key : keys)
-    {
-       System.out.println("Name=" + key);
-       System.out.println("Value=" + map.get(key));
-    }
-
-    */
 
   }
 
@@ -237,9 +237,4 @@ public class IceBreakRestServer {
     connection.close();
     doFlush = false;
   }
-
-
 }
-
-
-

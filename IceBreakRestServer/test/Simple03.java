@@ -22,7 +22,7 @@ public class Simple03 {
 
         // And I will controle when to send it back -  that is now
         rest.flush();
-        rest.write("Hello world - time is :" + rest.now() );
+        
       }
     }
     catch (IOException ex) {

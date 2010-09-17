@@ -19,11 +19,10 @@ public class Simple02 {
         rest.getHttpRequest();
 
         // Now I will produce a HTML response
-        rest.setContentType("text/html");
-        rest.write("<html><body><p>OK</p>");
-        rest.write("<p>" + rest.now() + "</p>");
+        rest.setContentType("text/html; charset=utf-8");
+        rest.write("<html><body>");
         for (int i= 1 ; i < 10000 ; i ++) {
-          rest.write("lopping: " + Integer.toString(i) + ":" + rest.now() + "<br>");
+          rest.write("<p>looping: " + Integer.toString(i) + ":" + rest.now() + "</p>");
         }
         rest.write("</body></html>");
 
